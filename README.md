@@ -1,9 +1,20 @@
-# LovelyDialog
+# 圆角LovelyDialog
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LovelyDialog-green.svg?style=true)](https://android-arsenal.com/details/1/3452)
 
 This library is a set of simple wrapper classes that are aimed to help you easily create fancy material dialogs.
 
 ![Screenshots](https://raw.githubusercontent.com/yarolegovich/lovelydialog/master/art/lovelydialogs_framed.png)
+
+## ADD新功能
+实现圆角Dialog，默认圆角6dp(需要在new的时候传入theme，theme中设置背景透明)：
+````
+setRadius(float radius);
+````
+使用Gradle：
+````
+compile 'com.mydialog:lovelydialog:1.0.0'
+````
+
 
 ## Gradle 
 Add this into your dependencies block.
