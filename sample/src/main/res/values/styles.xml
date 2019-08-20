@@ -5,10 +5,22 @@
     </style>
 
     <style name="CheckBoxTintTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 设置背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 设置对话框在横屏状态下所占屏幕宽度的比例 -->
+        <item name="android:windowMinWidthMajor">60%</item>
+        <!-- 设置对话框在竖屏状态下所占屏幕宽度的比例 -->
+        <item name="android:windowMinWidthMinor">85%</item>
         <item name="colorAccent">@color/darkGreen</item>
     </style>
 
     <style name="EditTextTintTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 设置背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 设置对话框在横屏状态下所占屏幕宽度的比例 -->
+        <item name="android:windowMinWidthMajor">60%</item>
+        <!-- 设置对话框在竖屏状态下所占屏幕宽度的比例 -->
+        <item name="android:windowMinWidthMinor">85%</item>
         <item name="colorAccent">@color/primaryText</item>
     </style>
 
@@ -19,4 +31,12 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="MyRoundDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 设置背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 设置对话框在横屏状态下所占屏幕宽度的比例 -->
+        <item name="android:windowMinWidthMajor">60%</item>
+        <!-- 设置对话框在竖屏状态下所占屏幕宽度的比例 -->
+        <item name="android:windowMinWidthMinor">85%</item>
+    </style>
 </resources>

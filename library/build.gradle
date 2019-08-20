@@ -1,9 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9.1'
+    }
+}
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         minSdkVersion 14
@@ -15,15 +24,20 @@ android {
 
 dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${rootProject.supportLibVersion}"
 }
 
+//com.novoda.bintray-release插件的闭包
 publish {
-    artifactId = 'lovely-dialog'
-    userOrg = rootProject.userOrg
+    repoName= rootProject.repoName    //仓库名(repoName 如果没有填写，上传的库默认仓库是maven)
+    userOrg = rootProject.userOrg    //在jcenter注册时填写的用户名，不是填写的姓名
+    //组id，类似于com.android.support:appcompat-v7:28.0.0中的com.android.support，可以自己根据项目随便自定义
     groupId = rootProject.groupId
-    uploadName = rootProject.uploadName
-    publishVersion = rootProject.publishVersion
-    description = rootProject.description
-    licences = rootProject.licences
+    //项目id，类似于com.android.support:appcompat-v7:28.0.0中  的appcompat-v7，也是在仓库中的packageName（不一定要是在github中的项目名）
+    //即该字段为你的模块名称，唯一标识符
+    artifactId = rootProject.artifactId
+    publishVersion = '1.0.0'  //版本号 , compile引用时的第3部分版本号
+    desc = 'This library is a set of simple wrapper classes that are aimed to help you easily create fancy dialogs.'
+    website = 'https://github.com/Loongg-max/LovelyDialog' //项目的托管地址（github、码云 等）
 }
 

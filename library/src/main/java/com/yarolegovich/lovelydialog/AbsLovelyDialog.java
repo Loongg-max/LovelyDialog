@@ -2,7 +2,6 @@ package com.yarolegovich.lovelydialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 /**
  * Created by yarolegovich on 16.04.2016.
+ *
+ * Edit by loongg-max on 2019/08/19
  */
 @SuppressWarnings({"unchecked", "WeakerAccess"})
 public abstract class AbsLovelyDialog<T extends AbsLovelyDialog> {
@@ -29,6 +31,11 @@ public abstract class AbsLovelyDialog<T extends AbsLovelyDialog> {
 
     private Dialog dialog;
     private View dialogView;
+    /**
+     * Add by loongg-max on 2019/08/19<br>
+     * 对话框跟布局，设置cardView背景透明后，可实现对话框圆角
+     * */
+    private CardView cardView;
 
     private ImageView iconView;
     private TextView topTitleView;
@@ -58,6 +65,14 @@ public abstract class AbsLovelyDialog<T extends AbsLovelyDialog> {
         dialogView = LayoutInflater.from(dialogBuilder.getContext()).inflate(res, null);
         dialog = dialogBuilder.setView(dialogView).create();
 
+        //add by loongg-max
+        //和在style中设置背景透明效果一样
+        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        /**
+         * Add by loongg-max on 2019/08/19
+         * */
+        cardView = findView(R.id.ld_root_cardView);
+
         iconView = findView(R.id.ld_icon);
         titleView = findView(R.id.ld_title);
         messageView = findView(R.id.ld_message);
@@ -67,16 +82,70 @@ public abstract class AbsLovelyDialog<T extends AbsLovelyDialog> {
     @LayoutRes
     protected abstract int getLayout();
 
+    /**
+     * 对dialogView进行配置<br>
+     * 例如：<br>
+     * .configureView(new ViewConfigurator<View>() {<br>
+     *      @ Override <br>
+     *      public void configureView(View v) {<br>
+     *          v.setBackgroundColor(Color.parseColor("#FF4081"));<br>
+     *          ((CardView)v).setRadius(10);<br>
+     *      }<br>
+     *  })<br>
+     */
     public T configureView(@NonNull ViewConfigurator<View> viewViewConfigurator) {
         viewViewConfigurator.configureView(dialogView);
         return (T) this;
     }
 
+
+    /**
+     * 对顶部标题TopTitle进行配置<br>
+     * 例如：<br>
+     * .configureTitleView(new ViewConfigurator<TextView>() { <br>
+     *      @ Override <br>
+     *      public void configureView(TextView v) { <br>
+     *          v.setTextColor(Color.WHITE); <br>
+     *          v.setGravity(Gravity.CENTER); <br>
+     *          v.setTextSize(10); <br>
+     *      } <br>
+     *  }) <br>
+     * */
+    public T configureTopTitleView(@NonNull ViewConfigurator<TextView> viewConfigurator) {
+        viewConfigurator.configureView(topTitleView);
+        return (T) this;
+    }
+
+
+    /**
+     * 对标题Title进行配置<br>
+     * 例如：<br>
+     * .configureTitleView(new ViewConfigurator<TextView>() { <br>
+     *      @ Override <br>
+     *      public void configureView(TextView v) { <br>
+     *          v.setTextColor(Color.WHITE); <br>
+     *          v.setGravity(Gravity.CENTER); <br>
+     *          v.setTextSize(10); <br>
+     *      } <br>
+     *  }) <br>
+     * */
     public T configureTitleView(@NonNull ViewConfigurator<TextView> viewConfigurator) {
         viewConfigurator.configureView(titleView);
         return (T) this;
     }
 
+    /**
+     * 对内容Message进行配置<br>
+     * 例如：<br>
+     * .configureMessageView(new ViewConfigurator<TextView>() { <br>
+     *      @ Override <br>
+     *      public void configureView(TextView v) { <br>
+     *          v.setTextColor(Color.WHITE); <br>
+     *          v.setGravity(Gravity.CENTER); <br>
+     *          v.setTextSize(10); <br>
+     *      } <br>
+     *  }) <br>
+     * */
     public T configureMessageView(@NonNull ViewConfigurator<TextView> viewConfigurator) {
         viewConfigurator.configureView(messageView);
         return (T) this;
@@ -251,5 +320,15 @@ public abstract class AbsLovelyDialog<T extends AbsLovelyDialog> {
                 dismiss();
             }
         }
+    }
+
+    /**
+     * Add by loongg-max on 2019/08/19
+     * <br>设置（CardView）对话框圆角大小
+     * @param radius 圆角大小
+     * */
+    public T setRadius(float radius){
+        cardView.setRadius(radius);
+        return (T) this;
     }
 }
