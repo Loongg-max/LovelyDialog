@@ -1,7 +1,6 @@
 package com.yarolegovich.sample;
 
-import android.content.DialogInterface;
-import android.support.v4.content.ContextCompat;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -100,7 +99,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showStandardDialog(Bundle savedInstanceState) {
-        new LovelyStandardDialog(this, ButtonLayout.VERTICAL)
+        new LovelyStandardDialog(this, R.style.MyRoundDialog, ButtonLayout.VERTICAL)
+                .setRadius(40)
                 .setTopColorRes(R.color.indigo)
                 .setButtonsColorRes(R.color.darkDeepOrange)
                 .setIcon(R.drawable.ic_star_border_white_36dp)
@@ -121,7 +121,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showSingleChoiceDialog(Bundle savedInstanceState) {
         ArrayAdapter<DonationOption> adapter = new DonationAdapter(this, loadDonationOptions());
-        new LovelyChoiceDialog(this)
+        new LovelyChoiceDialog(this, R.style.MyRoundDialog)
+                .setRadius(40)
                 .setTopColorRes(R.color.darkGreen)
                 .setTitle(R.string.donate_title)
                 .setInstanceStateHandler(ID_SINGLE_CHOICE_DIALOG, saveStateHandler)
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showInfoDialog(Bundle savedInstanceState) {
-        new LovelyInfoDialog(this)
+        new LovelyInfoDialog(this, R.style.MyRoundDialog)
                 .setTopColorRes(R.color.darkBlueGrey)
                 .setIcon(R.drawable.ic_info_outline_white_36dp)
                 .setInstanceStateHandler(ID_INFO_DIALOG, saveStateHandler)
@@ -157,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showMultiChoiceDialog(Bundle savedInstanceState) {
         String[] items = getResources().getStringArray(R.array.food);
         new LovelyChoiceDialog(this, R.style.CheckBoxTintTheme)
+                .setRadius(30)
                 .setTopColorRes(R.color.darkRed)
                 .setTitle(R.string.order_food_title)
                 .setIcon(R.drawable.ic_food_white_36dp)
@@ -198,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void showProgressDialog(Bundle savedInstanceState) {
-        new LovelyProgressDialog(this)
+        new LovelyProgressDialog(this, R.style.MyRoundDialog)
                 .setIcon(R.drawable.ic_cast_connected_white_36dp)
                 .setTitle(R.string.connecting_to_server)
                 .setInstanceStateHandler(ID_PROGRESS_DIALOG, saveStateHandler)
@@ -217,5 +219,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return result;
     }
-
 }

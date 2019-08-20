@@ -1,6 +1,7 @@
 package com.yarolegovich.sample;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ public class DonationAdapter extends ArrayAdapter<DonationOption> {
             vh = new ViewHolder(convertView);
             convertView.setTag(vh);
         } else vh = (ViewHolder) convertView.getTag();
-
+        Log.e("getView", "position==" + position);
         DonationOption option = getItem(position);
 
         vh.description.setText(option.description);

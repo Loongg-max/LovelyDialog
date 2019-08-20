@@ -6,8 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.novoda:bintray-release:0.8.0'
+        classpath 'com.android.tools.build:gradle:3.4.2'
     }
 }
 
@@ -24,16 +23,20 @@ task clean(type: Delete) {
 
 
 ext {
-    userOrg = 'yarolegovich'
-    groupId = 'com.yarolegovich'
-    uploadName = 'LovelyDialog'
-    description = 'This library is a set of simple wrapper classes that are aimed to help you easily create fancy dialogs.'
-    publishVersion = '1.1.0'
-    licences = ['Apache-2.0']
 
-    compileSdkVersion = 27
-    buildToolsVersion = '26.0.2'
-    targetSdkVersion = 27
+    //uploadName = 'LovelyDialog'
+    repoName = "MyMP"    //仓库名(repoName 如果没有填写，上传的库默认仓库是maven)
+    userOrg = 'loongg-max'    //在jcenter注册时填写的用户名，不是填写的姓名
+    //组id，类似于com.android.support:appcompat-v7:28.0.0中的com.android.support，可以自己根据项目随便自定义
+    groupId = 'com.mydialog'
+    //项目id，类似于com.android.support:appcompat-v7:28.0.0中的appcompat-v7，也是在仓库中的packageName
+    artifactId = 'lovelydialog'
+    publishVersion = '1.0.0'  //版本号 , compile引用时的第3部分版本号
+    desc = 'This library is a set of simple wrapper classes that are aimed to help you easily create fancy dialogs.'
+    website = 'https://github.com/Loongg-max/LovelyDialog'
 
-    supportLibVersion = '27.0.2'
+
+    compileSdkVersion = 28
+    targetSdkVersion = 28
+    supportLibVersion = '28.0.0'
 }
