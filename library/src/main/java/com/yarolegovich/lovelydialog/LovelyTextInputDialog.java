@@ -40,6 +40,16 @@ public class LovelyTextInputDialog extends AbsLovelyDialog<LovelyTextInputDialog
         inputField.addTextChangedListener(new HideErrorOnTextChanged());
     }
 
+    /**
+     * 对输入框EditText进行配置<br>
+     * 例如：<br>
+     * .configureEditText(new ViewConfigurator<EditText>() { <br>
+     *      @ Override <br>
+     *      public void configureView(EditText v) { <br>
+     *          v.setMinLines(5); <br>
+     *      } <br>
+     *  }) <br>
+     * */
     public LovelyTextInputDialog configureEditText(@NonNull ViewConfigurator<EditText> viewConfigurator) {
         viewConfigurator.configureView(inputField);
         return this;
@@ -76,10 +86,31 @@ public class LovelyTextInputDialog extends AbsLovelyDialog<LovelyTextInputDialog
         return this;
     }
 
+    /**
+     * 对输入框EditText输入的内容进行过滤 <br>
+     * 例如：<br>
+     * .setInputFilter(R.string.text_input_error_message, new LovelyTextInputDialog.TextFilter() { <br>
+     *      @ Override <br>
+     *      public boolean check(String text) { <br>
+     *          return text.matches("\\w+"); <br>
+     *      } <br>
+     *  }) <br>
+     * */
     public LovelyTextInputDialog setInputFilter(@StringRes int errorMessage, TextFilter filter) {
         return setInputFilter(string(errorMessage), filter);
     }
 
+
+    /**
+     * 对输入框EditText输入的内容进行过滤 <br>
+     * 例如：<br>
+     * .setInputFilter("错误message", new LovelyTextInputDialog.TextFilter() { <br>
+     *      @ Override <br>
+     *      public boolean check(String text) { <br>
+     *          return text.matches("\\w+"); <br>
+     *      } <br>
+     *  }) <br>
+     * */
     public LovelyTextInputDialog setInputFilter(String errorMessage, TextFilter filter) {
         this.filter = filter;
         this.errorMessage.setText(errorMessage);

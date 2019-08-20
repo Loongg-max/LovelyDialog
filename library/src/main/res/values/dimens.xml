@@ -1,4 +1,6 @@
 <resources>
     <dimen name="ld_side_margin">22dp</dimen>
     <dimen name="ld_side_cb_margin">16dp</dimen>
+    <!-- Add by loongg-max on 2019/08/19 对话框默认圆角大小-->
+    <dimen name="ld_round_radius">6dp</dimen>
 </resources>
